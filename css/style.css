@@ -1,0 +1,23 @@
+@import url("https://fonts.google.com/share?selection.family=Jua");
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-family: "Jua";
+}
+
+/*# sourceMappingURL=style.css.map */

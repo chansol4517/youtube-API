@@ -10,22 +10,38 @@ fetch('요청url')
 */
 
 const api_key = "AIzaSyAVj-jOY1jNa_fGbP4VBrSIRhFwaciC7SE";
-const pid = "PL-XW_XzSFum-NctWuWLRFg2DmuFaSjKPf";
-const num = 4;
+const pid = "PLnx42gENvRgBuv_049gEWpTmqcfjcUICK";
+const num = 10;
 
 const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${pid}&key=${api_key}&maxResults=${num}`;
 
+const frame = document.querySelector("section");
+
+
 fetch(url)
-  .then((data) => data.json()) //문자열의 데이터를 객체나 배열형태로 변환(parsing)
-.then((json) => {
-    //parsing완료된 데이터를 json파라미터명으로 받아서
-    //해당 코드블록안쪽에서 데이터 활용
-    console.log(json);
-    //자주쓰는 데이터값
-    //title: 영상의 제목
-    //description : 영상의 본문
-    //publishedAt : 영상 업로드 날짜
-    //thumbnails.standard.url : 썸네일주소
-    //resourceId.videoId: 추후 영상호출시 필요한 정보값
-});
+  .then((data) => data.json())
+  .then((json) => {
+    const vidsData = json.items;
+    let tags = "";
+
+    vidsData.forEach((data) => {
+        tags += `
+          <article>
+            <div class='pic'>
+              <img src=${data.snippet.thumbnails.standard.url} alt=${data.snippet.title} />
+            </div>
+            <h2>${data.snippet.title}</h2>
+            <p>${data.snippet.description}</p>
+            <span>${data.snippet.publishedAt}</span>
+          </article>
+        `;
+      });
+  
+      console.log(tags);
+      frame.innerHTML = tags;
+    });
+
+//미션 : 제목이 60글자넘어가면 ...말줄임표 처리
+//본문 120글자 넘어가면 ...말줄임표 처리
+//날짜를 2021.03.12 변경
 
