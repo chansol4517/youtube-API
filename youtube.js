@@ -63,15 +63,21 @@ fetch(url)
 document.body.addEventListener('click', function(e){
 
     if (e.target.className === "vidTitle") {
-        const asideEl = document.createElement("aside"); //엘리먼트 노드 직접 생성
-        //aside라는 비어있는 엘리먼트요소 안쪽에 기존처럼 innerHTML원하는 요소 동적 생성
+        const asideEl = document.createElement("aside");
         asideEl.innerHTML = `
           <div class='con'>
           </div>
-          <button>close</button>
-        `;
-        //append로 기존 요소 유지하면서 aside요소 추가 (인수로는 문자가 아닌 돔요소연결)    
+          <button class="btnClose">close</button>
+        `;  
        document.body.append(asideEl);
 
     }
 });
+
+//동적으로 생성된 모달 닫기 버튼에 이벤트 위침
+document.body.addEventListener("click", (e) => {
+    if (e.target.className === "btnClose") {
+      //display:none과는 다르게 물리적으로 DOM자체를 제거
+      document.querySelector("aside").remove();
+    }
+  });
