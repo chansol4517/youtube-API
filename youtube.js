@@ -9,4 +9,9 @@ fetch('요청url').then(data=> data.json()).then(json=>{
 
 const api_key = "AIzaSyAVj-jOY1jNa_fGbP4VBrSIRhFwaciC7SE";
 
+fetch("/data.json")
+  .then((data) => data.json())
+  .then((json) => {
+    console.log(json);
+  });
 
