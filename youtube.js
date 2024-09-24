@@ -81,5 +81,20 @@ document.body.addEventListener('click', function(e){
 */
     if(e.target.className==="vidTitle"){
         console.log("you clicked vidTitle");
+        /*동적으로 aside로 모달창 생성 
+        해당 모달창을 절대 innerHTML로 생성 불가
+        innerHTML은 기존의 선택자 안쪽의 요소들을 다 지우고 새로운 요소들로 바꿔치기 하는 개념
+        지금처럼 기존 목록 요소를 유치하면 모달만 추가하고자 할 때는 적합하지 않음
+        해결방법 : 부모선택자 .append(동적 생성 요소 : DOM객체)
+        */
+
+        // 동적 DOM객체를 메서드를 통해 직접 생성
+        const asideEl = document.createElement("aside");//aside 라는 엘리먼트 노드를 직접 생성
+        //body안쪽의 요소들을 그대로 유지하면서 동적으로 aside요소 추가
+       document.body.append(asideEl);
+
+       //prepend: 기본요소 유지하면서 앞쪽에 추가
+       //append: 기존요소 유지하면서 뒤쪽에 추가(더 자주 쓰임)
+
     }
 });
