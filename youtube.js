@@ -25,19 +25,28 @@ fetch(url)
     let tags = "";
 
     vidsData.forEach((data) => {
+        let title =
+          data.snippet.title.length > 30
+            ? data.snippet.title.substring(0, 30) + "..."
+            : data.snippet.title;
+  
+        let desc =
+          data.snippet.description.length > 100
+            ? data.snippet.description.substring(0, 100) + "..."
+            : data.snippet.description;
+  
         tags += `
           <article>
             <div class='pic'>
               <img src=${data.snippet.thumbnails.standard.url} alt=${data.snippet.title} />
             </div>
-            <h2>${data.snippet.title}</h2>
-            <p>${data.snippet.description}</p>
+            <h2>${title}</h2>
+            <p>${desc}</p>
             <span>${data.snippet.publishedAt}</span>
           </article>
         `;
       });
   
-      console.log(tags);
       frame.innerHTML = tags;
     });
 
