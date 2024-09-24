@@ -17,10 +17,6 @@ const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&pl
 
 const frame = document.querySelector("section");
 
-let link = document.createElement('link');
-link.href = 'https://fonts.google.com/share?selection.family=Jua';
-link.rel = 'stylesheet';
-document.head.appendChild(link);
 
 
 fetch(url)
