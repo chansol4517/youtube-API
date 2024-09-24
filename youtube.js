@@ -42,42 +42,40 @@ fetch(url)
 
       tags += `
         <article>
-          <h2 class='vidTitle'>${title}</h2>          
+          <h2 class='vidTitle' data-id=${data.snippet.resourceId.videoId}>${title}</h2>         
           
           <div class='txt'>
             <p>${desc}</p>
             <span>${date}</span>
           </div>
-
           <div class='pic'>
             <img src=${data.snippet.thumbnails.standard.url} alt=${data.snippet.title} />
           </div>
         </article>
       `;
     });
-
     frame.innerHTML = tags;
   });
 
 //동적 생성요소에 이벤트 연결해서 동적으로 모달요소 추가
-document.body.addEventListener('click', function(e){
-
-    if (e.target.className === "vidTitle") {
-        const asideEl = document.createElement("aside");
-        asideEl.innerHTML = `
-          <div class='con'>
-          </div>
-          <button class="btnClose">close</button>
-        `;  
-       document.body.append(asideEl);
-
-    }
+document.body.addEventListener("click", (e) => {
+  const vidId = e.target.getAttribute("data-id");
+  if (e.target.className === "vidTitle") {
+    const asideEl = document.createElement("aside");
+    asideEl.innerHTML = `
+      <div class='con'>
+        <iframe src="http://www.youtube.com/embed/${vidId}" frameborder="0"></iframe>
+      </div>
+      <button class='btnClose'>close</button>
+    `;
+    document.body.append(asideEl);
+  }
 });
 
-//동적으로 생성된 모달 닫기 버튼에 이벤트 위침
+//동적으로 생성된 모달 닫기버튼에 이벤트 위침
 document.body.addEventListener("click", (e) => {
-    if (e.target.className === "btnClose") {
-      //display:none과는 다르게 물리적으로 DOM자체를 제거
-      document.querySelector("aside").remove();
-    }
-  });
+  if (e.target.className === "btnClose") {
+    //display:none과는 다르게 물리적으로 DOM자체를 제거
+    document.querySelector("aside").remove();
+  }
+});
