@@ -44,16 +44,19 @@ fetch(url)
 
       tags += `
         <article>
+          <h2>${title}</h2>         
+          
+          <div class='txt'>
+            <p>${desc}</p>
+            <span>${date}</span>
+          </div>
+
           <div class='pic'>
             <img src=${data.snippet.thumbnails.standard.url} alt=${data.snippet.title} />
           </div>
-          <h2>${title}</h2>
-          <p>${desc}</p>
-          <span>${date}</span>
         </article>
       `;
     });
 
     frame.innerHTML = tags;
   });
-
